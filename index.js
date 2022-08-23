@@ -67,10 +67,10 @@ function bot () {
           font: "console",
           colors: ["green"]
         })
+        sock.readMessage([lihat])
         
         if(pesan){
           if(fs.readFileSync('./command/'+pesan+'.js')){
-            sock.readMessages([lihat])
             const cmd = require('./command/'+pesan)
             if(pesan === "halo"){
               const nama = messages[0].pushName
@@ -83,7 +83,6 @@ function bot () {
       }
       if(sender === "status@broadcast" || me) return;
       if(messages[0].message.listResponseMessage){
-        sock.readMessages([lihat])
         listRespon = messages[0].message.listResponseMessage;
         if(fs.readFileSync("./respon/"+listRespon.title+".js")){
           const responMsg = require("./respon/"+listRespon.title)
